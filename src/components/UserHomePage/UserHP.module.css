@@ -1,0 +1,859 @@
+.UserHPContainer {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.UserHPHeader {
+    display: flex;
+    width: 100%;
+    height: 134px;
+    padding: 25px 40px 50px 40px;
+    gap: 60px;
+    font-size: 18;
+    font-weight: bold;
+    background-color: #79C9FB;
+}
+
+.HeaderP {
+    cursor: pointer;
+    height: 134px;
+    font-size: 15px;
+    text-align: center;
+    letter-spacing: 3px;
+}
+
+.HeaderP h1 {
+    color: #fff;
+}
+
+.HeaderP h2 {
+    color: #6123F2;
+}
+
+.headComponent {
+    text-align: center;
+    margin-top: 25px;
+    height: 30px;
+    width: 160px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    font-size: 20px;
+}
+
+.headComponentLogin {
+    text-align: center;
+    margin-top: 20px;
+    height: 50px;
+    width: 190px;
+    padding-top: 10px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #5096E3;
+    border: 3px solid #1485CB;
+    border-radius: 10px;
+}
+
+.Rotate {
+    transform: rotate(180deg);
+}
+
+.Menu {
+    position: absolute;
+    top: 80px;
+    /* Điều chỉnh khoảng cách của menu */
+    left: 230px;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    z-index: 1100;
+}
+
+.manageMenu {
+    position: absolute;
+    top: 90px;
+    /* Điều chỉnh khoảng cách của menu */
+    right: 0px;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    z-index: 1100;
+}
+
+.manageMenu ul {
+    list-style: none;
+    padding: 3px 0;
+    margin: 0;
+}
+
+.manageMenu li {
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding-top: 7px;
+    text-align: center;
+    background-color: #48d4e7;
+    width: 180px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.Menu ul {
+    list-style: none;
+    padding: 3px 0;
+    margin: 0;
+}
+
+.Menu ul li {
+    margin-bottom: 10px;
+    padding-top: 7px;
+    text-align: center;
+    background-color: #48d4e7;
+    width: 220px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.Menu ul li:hover {
+    background-color: #f0f0f0;
+}
+
+.manageMenu ul li:hover {
+    background-color: #f0f0f0;
+}
+
+
+
+.headComponent img {
+    margin-top: 7px;
+    margin-left: 15px;
+    width: 20px;
+    height: 10px;
+}
+
+.headComponent .aclogo {
+    margin-top: 7px;
+    margin-left: 15px;
+    width: 30px;
+    height: 30px;
+}
+
+.advice {
+    padding-top: 25px;
+}
+
+.midContainer1 {
+    height: 465px;
+    width: 100%;
+}
+
+.midContainer1 p {
+    position: absolute;
+    top: 200px;
+    left: 35%;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.SearchBar {
+    width: 1111px;
+    height: 80px;
+    background-color: #F1F5F9;
+    position: absolute;
+    top: 300px;
+    left: 200px;
+    display: flex;
+}
+
+.Searchinside input {
+    background-color: #F1F5F9;
+    padding-left: 50px;
+    border: none;
+    width: 1000px;
+    height: 100%;
+    font-size: 22px;
+    outline: none;
+}
+
+input::placeholder {
+    color: #D9D9D9;
+}
+
+.SearchBar img {
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 100px;
+    height: 80px;
+    padding: 20px;
+}
+
+.AIlogo {
+    width: 150px;
+    height: 150px;
+    position: fixed;
+    top: 100px;
+    right: 14px;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+.SmallmidContainer1 {
+    position: absolute;
+    top: 400px;
+    left: 60px;
+    display: flex;
+    gap: 50px;
+    height: 90px;
+    width: 100%;
+    font-size: 18px;
+
+}
+
+.ininmidcontainer1 {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+}
+
+.ininmidcontainer1 span {
+    margin-right: 40px;
+}
+
+
+
+.InSmallmidContainer1 {
+    display: flex;
+}
+
+.InSmallmidContainer1 h1 {
+    animation: moveEffect 5s linear infinite;
+    white-space: nowrap;
+    font-size: 18px;
+}
+
+.InSmallmidContainer1 {
+    padding-top: 30px;
+    padding-left: 20px;
+    background-color: #fff;
+    width: 441px;
+    height: 90px;
+    vertical-align: center;
+    font-weight: bold;
+    border-radius: 10px;
+    gap: 20px;
+}
+
+.InSmallmidContainer1 img {
+    padding-top: 2px;
+    width: 21px;
+    height: 18px;
+}
+
+@keyframes moveEffect {
+    0% {
+        transform: translateX(-50%);
+        /* Bắt đầu từ ngoài màn hình bên trái */
+    }
+
+    100% {
+        transform: translateX(0%);
+        /* Di chuyển đến ngoài màn hình bên phải */
+    }
+}
+
+.midContainer2 {
+    margin-top: 0px;
+    background-color: rgba(104, 225, 252, 0.4);
+    width: 100%;
+    height: 506px;
+}
+
+.midContainer2 p {
+    padding-left: 50px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.inmidContainer2 {
+    display: flex;
+    width: 100%;
+}
+
+.inmidContainer2 img {
+    margin: 190px 20px 0 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.BoxContainer {
+    margin-top: 50px;
+    background-color: #fff;
+    width: 320px;
+    height: 334px;
+    border-radius: 20px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.ininmidContainer2 {
+    display: flex;
+    overflow: hidden;
+    width: 1370px;
+}
+
+.ininmidContainer2 h2 {
+    display: flex;
+    animation: moveEffect 10s linear infinite;
+    gap: 50px;
+}
+
+.ininmidContainer3 h3 {
+    display: flex;
+    animation: moveEffect 10s linear infinite;
+    gap: 50px;
+}
+
+.ininmidContainer2 h2 span {
+    display: flex;
+    gap: 50px;
+}
+
+.BoxContainer img {
+    margin-top: 50px;
+    margin-left: 55px;
+    width: 190px;
+    height: 188px;
+}
+
+.BoxContainer h1 {
+    text-align: center;
+    font-size: 25px;
+}
+
+.midContainer3 {
+    width: 100%;
+    height: 375px;
+}
+
+.midContainer3 p {
+    width: 100%;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.inmidContainer3 {
+    padding: 0 90px 0 90px;
+    display: flex;
+    width: 100%;
+    gap: 50px;
+}
+
+.inmidContainer3 img {
+    margin-top: 100px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.ininmidContainer3 {
+    gap: 60px;
+    display: flex;
+    overflow: hidden;
+}
+
+.ininmidContainer3 h3 span {
+    display: flex;
+    gap: 50px;
+}
+
+.ininmidContainer3 img {
+    margin-top: 50px;
+    width: 177px;
+    height: 177px;
+
+}
+
+.bottomContainer {
+    background: linear-gradient(to bottom, #ffffff, #09CAF5);
+    height: 1550px;
+}
+
+.bottomContainer img {
+    width: 1300px;
+    height: 700px;
+    margin-left: 100px;
+}
+
+.inbottomContainer {
+    height: 487px;
+    width: 100%;
+    margin: 50px 0 0 50px;
+    display: flex;
+}
+
+.bottomContainer p {
+    margin-top: 90px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.ininbottomContainer {
+    width: 343px;
+    height: 487px;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.LoginContainer {
+    background-color: #F1F5F9;
+    display: flex;
+    overflow-y: auto;
+    height: auto;
+    padding-bottom: 34px;
+
+}
+
+.LoginContainer img {
+    margin-top: 100px;
+    margin-left: 80px;
+    width: 577px;
+    height: 430px;
+}
+
+.inLoginContainer {
+    margin-top: 40px;
+    margin-left: 50px;
+    background-color: #FFF;
+    width: 554px;
+    height: auto;
+    border-radius: 20px;
+}
+
+.tabs2 {
+    padding: 0px 100px 0 100px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.indicator2 {
+    position: absolute;
+    bottom: 0px;
+    height: 2px;
+    width: 32%;
+    transition: left 0.3s ease, width 0.3s ease, background-color 0.3s ease;
+}
+
+.left {
+    left: 18%;
+    background-color: #68E1FC;
+}
+
+.right {
+    left: 50%;
+    background-color: #68E1FC;
+
+}
+
+
+.intab {
+    flex: 1;
+    text-align: center;
+    padding: 20px 0 20px 0;
+    cursor: pointer;
+    position: relative;
+    font-size: 24px;
+    font-weight: bold;
+    color: #9E9E9E;
+    border-bottom: 2px solid #ccc;
+}
+
+.active {
+    color: #68E1FC;
+    font-weight: bold;
+}
+
+.form {
+    width: 554px;
+    padding: 0 30px 30px 30px;
+    font-family: Arial, sans-serif;
+}
+
+.inputGroup {
+    margin-bottom: 20px;
+}
+
+.form2 {
+    width: 554px;
+    padding: 0 30px 30px 30px;
+    font-family: Arial, sans-serif;
+    height: 800px;
+}
+
+.form2 label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px 0 15px 0;
+}
+
+.form label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px 0 5px 0;
+}
+
+.inputField {
+    position: relative;
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.passwordWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.passwordWrapper button {
+    margin-right: 50px;
+}
+
+.togglePassword {
+    position: absolute;
+    right: 5px;
+    /* Khoảng cách từ bên phải */
+    top: 50%;
+    /* Đặt biểu tượng ở góc phải trong input */
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: #666;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    height: 60px;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    margin-right: 230px;
+}
+
+.options a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
+
+.LoginButton {
+    text-align: center;
+    background-color: #C4C4C4;
+    color: #fff;
+    height: 60px;
+    width: 450px;
+    margin-left: 22px;
+    padding-top: 5px;
+    font-size: 22px;
+    border-radius: 10px;
+}
+
+.form input {
+    font-size: 20px;
+    border-radius: 10px;
+    height: 50px;
+}
+
+.form2 input {
+    font-size: 20px;
+    border-radius: 10px;
+    height: 50px;
+}
+
+.indicator3 {
+    margin-top: 40px;
+    background-color: #C4C4C4;
+    height: 1px;
+    width: 500px;
+}
+
+.space {
+    margin-top: 30px;
+}
+
+.text {
+    margin: 0 0 0 100px;
+    font-size: 20px;
+    display: inline;
+    color: #9E9E9E;
+}
+
+.form a {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: none;
+}
+
+
+
+.phone2 {
+    display: flex;
+}
+
+.chooseCountry {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D9D9D9;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.dropdown {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    width: 100px;
+    z-index: 100;
+}
+
+.dropdownMenu {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 200px;
+}
+
+.dropdownItem {
+    border-bottom: 1px solid #007bff;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.form .phone2 input {
+    width: 394px;
+    font-size: 20px;
+    border-radius: 0 10px 10px 0;
+    height: 50px;
+}
+
+.form2 .phone2 input {
+    width: 394px;
+    font-size: 20px;
+    border-radius: 0 10px 10px 0;
+    height: 50px;
+}
+
+.form p {
+    padding: 0;
+    margin: 20px 0 0 0;
+    font-size: 18px;
+}
+
+.options2 {
+    margin-top: 20px;
+    display: flex;
+}
+
+.form h1 {
+    padding: 0;
+    margin: 20px 0 0 0;
+    font-size: 18px;
+    color: #616060;
+}
+
+.options2 label {
+    margin-left: 5px;
+}
+
+.OTPButton {
+    margin-top: 48px;
+    text-align: center;
+    background-color: #C4C4C4;
+    color: #fff;
+    height: 60px;
+    width: 450px;
+    margin-left: 22px;
+    padding-top: 17px;
+    font-size: 22px;
+    border-radius: 10px;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    /* Make sure modal is above other content */
+}
+
+.ttButton {
+    font-size: 22px;
+    margin-top: 20px;
+    background-color: #09CAF5;
+}
+
+.modalContent {
+    justify-items: center;
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    margin: 10% auto;
+    max-width: 500px;
+    z-index: 1001;
+}
+
+.modalText {
+    margin-top: 20px;
+}
+
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.RegisterButton {
+    text-align: center;
+    background-color: #C4C4C4;
+    color: #fff;
+    height: 60px;
+    width: 450px;
+    margin-top: 40px;
+    margin-left: 22px;
+    padding-top: 5px;
+    font-size: 22px;
+    border-radius: 10px;
+}
+
+.option2 {
+    display: flex;
+    gap: 255px;
+}
+
+.option2 button {
+    text-align: center;
+    width: 120px;
+}
+
+.dangkiModalContent {
+    justify-items: center;
+    position: relative;
+    padding: 20px;
+    margin: 10% auto;
+    width: 300px;
+    height: 150px;
+    z-index: 1001;
+    background-color: #5096E3;
+}
+
+.dangkiModalContent img {
+    margin: 20px 0 0 0;
+    width: 50px;
+    height: 50px;
+}
+
+.manageProfileContainer {
+    position: absolute;
+    background-color: #D9D9D9;
+    width: 100%;
+    top: 134px;
+    left: 0px;
+    height: 81.5%;
+    z-index: 1099;
+}
+
+.functionProfile {
+    width: 300px;
+    font-size: 30px;
+    background-color: #fff;
+    position: absolute;
+    left: 50px;
+    top: 16px;
+}
+
+.functionProfile ul {
+    list-style-type: none;
+    padding: 5px;
+}
+
+.functionProfile ul li {
+    border-bottom: 1px solid #9E9E9E;
+    text-decoration: none;
+    padding: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.functionProfile ul li:hover {
+    background-color: #fff;
+}
+
+.functionProfile li.active {
+    background-color: #007bff;
+}
+
+.functionProfile ul li.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.lichkhamContainer {
+    padding: 5px;
+    position: absolute;
+    top: 150px;
+    width: 1100px;
+    right: 20px;
+    height: 550px;
+    background-color: #fff;
+    z-index: 1099;
+}
+
+.imgInput {
+    margin-top: 15px;
+}

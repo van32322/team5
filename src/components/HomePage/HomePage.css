@@ -1,0 +1,618 @@
+.container-homepagemain {
+    display: flex;
+    margin-right: 160px;
+    width: 91%;
+    height: 100vh;
+    background-color: #ccc;
+    /* Chiều cao đầy màn hình */
+}
+
+.small-container {
+    height: 40px;
+}
+
+.container-homepage {
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    gap: 20px;
+    padding-left: 40px;
+}
+
+.container-homepage .text {
+    color: #4b4848;
+}
+
+.info {
+    color: #000000;
+    text-align: center;
+}
+
+.divider {
+    width: 1px;
+    /* Độ rộng đường thẳng */
+    height: 40px;
+    /* Chiều cao đường thẳng */
+    background-color: black;
+    /* Màu của đường thẳng */
+}
+
+.divider2 {
+    height: 1px;
+    width: 320px;
+    background-color: black;
+}
+
+.divider3 {
+    margin-left: 20px;
+    height: 1px;
+    width: 200px;
+    background-color: rgb(216, 213, 213);
+}
+
+/* Sidebar Container */
+.sidebar-left {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: #ffffff;
+    color: #1c1d1e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.profile-container {
+    width: 100%;
+    height: 100%;
+}
+
+.in-profile-container {
+    display: flex;
+    font-size: 8px;
+    padding-top: 10px;
+}
+
+.logout-container {
+    text-align: center;
+    margin: 10px 20px 0 20px;
+    width: 80%;
+    cursor: pointer;
+    background-color: #88afff;
+    border-radius: 4px;
+    line-height: 30px;
+    display: block;
+}
+
+.in-profile-container img {
+    width: 60px;
+    padding-left: 20px;
+    margin-right: 20px;
+}
+
+.main-containt {
+    margin-left: 10px;
+    width: 880px;
+    height: 100vh;
+}
+
+.Header {
+    display: flex;
+    text-align: center;
+    width: 100%;
+    height: 70px;
+    padding-left: 20px;
+    padding-top: 15px;
+    background-color: #ffffff;
+    font-weight: bold;
+    font-size: 30px;
+    /* Màu nền để dễ nhận diện */
+    /* Xóa position: absolute */
+}
+
+.searchlogo {
+    object-fit: fill;
+    padding-top: 5px;
+    padding-left: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.notification-container {
+    width: 36px;
+    height: 36px;
+    border-top: 0.5px;
+    margin-left: 50px;
+    border: 0.5px solid #adabab;
+    border-radius: 10px;
+}
+
+.notification {
+    object-fit: fill;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.main-containt .Search {
+    display: flex;
+    padding: 10px;
+    font-size: 16px;
+    width: 40%;
+    max-width: 400px;
+    margin-bottom: 15px;
+    margin-left: 230px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.mid-container {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    gap: 18px;
+}
+
+.small-mid-container1 {
+    width: 250px;
+    margin-top: 20px;
+    margin-left: 24px;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.earning-logo {
+    background-color: #e3f1ff;
+    width: 30px;
+    height: 30px;
+    margin: 15px 0 0 15px;
+}
+
+.new-appointment-logo {
+    background-color: #daf9e3;
+    width: 30px;
+    height: 30px;
+    margin: 15px 0 0 15px;
+}
+
+.new-patient-logo {
+    background-color: #fff0db;
+    width: 30px;
+    height: 30px;
+    margin: 15px 0 0 15px;
+}
+
+.sort-container {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.sort-by select {
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 7px;
+    border-color: #adabab;
+}
+
+.mid-mid-container {
+    position: relative;
+    width: 95%;
+    height: 200px;
+    background-color: #ffffff;
+    margin: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    display: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.up-logo {
+    padding-top: 15px;
+    object-fit: cover;
+    width: 30px;
+    height: 30px;
+    margin-left: 45px;
+}
+
+.mid-text3 {
+    padding-top: 8px;
+    color: #40af52;
+}
+
+.mid-text1 {
+    padding-left: 15px;
+    padding-top: 15px;
+}
+
+.super-small-container {
+    display: flex;
+    padding-top: 5px;
+}
+
+.mid-text2 {
+    padding-left: 15px;
+    font-size: 30px;
+}
+
+.img-sidebar-right {
+    width: 80px;
+    height: auto;
+    padding-top: 50px;
+}
+
+.sidebar-right {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 400px;
+    height: 100vh;
+    background-color: #ffffff;
+    color: #1c1d1e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #000000;
+}
+
+.sidebar-header img {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.small-container2 {
+    color: black;
+    display: flex;
+    width: 100%;
+    padding-left: 40px;
+    padding-top: 20px;
+    font-weight: bold;
+    gap: 120px;
+}
+
+.small-container3 {
+    width: 100%;
+    padding-left: 40px;
+    height: 150px;
+    overflow-y: auto;
+    /* Cho phép cuộn dọc */
+    border: 1px solid #ccc;
+}
+
+.small-container4 {
+    width: 100%;
+    padding-left: 40px;
+    height: 180px;
+}
+
+.small-container4 p {
+    padding: 0;
+    font-weight: bold;
+}
+
+.menu-item {
+    position: relative;
+    width: 100%;
+    text-align: left;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+/* Điều chỉnh màu và hiệu ứng khi item đang active */
+.menu-item a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000000;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+/* Màu chữ và icon khi menu đang ở trạng thái active */
+.menu-item.active a {
+    color: white;
+    /* Chữ màu trắng khi active */
+}
+
+.menu-item.active .icon {
+    color: white;
+    /* Icon màu trắng khi active */
+}
+
+/* Tạo hình vuông xanh khi active */
+.menu-item.active {
+    background-color: #3371eb;
+    /* Màu nền xanh */
+    border-radius: 0;
+    /* Đảm bảo không bo góc */
+    padding-left: 40px;
+    /* Giữ khoảng cách cho icon */
+}
+
+/* Thêm hiệu ứng di chuyển hình vuông */
+
+/* Hover Effect */
+.menu-item a:hover {
+    color: #81A1C1;
+    /* Màu chữ khi hover */
+}
+
+.menu-item a:hover .icon {
+    color: #81A1C1;
+    /* Màu icon khi hover */
+}
+
+/* Điều chỉnh cho icon */
+.menu-item .icon {
+    margin-right: 15px;
+    font-size: 1.5em;
+}
+
+/* Responsive Sidebar */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .menu-item a {
+        font-size: 14px;
+    }
+}
+
+.appointment-maincontainer {
+    width: 1350px;
+    margin-left: 500px;
+    background-color: #ffffff;
+    padding-left: 50px;
+    font-size: 30px;
+    border-left: 3px;
+    border-radius: 20px 0 0 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    /* Bắt đầu từ trong suốt */
+    animation: slideIn 1s forwards;
+    /* Gọi animation */
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        /* Bắt đầu từ bên phải ngoài màn hình */
+        opacity: 0;
+        /* Trong suốt */
+    }
+
+    to {
+        transform: translateX(0);
+        /* Dừng lại tại vị trí gốc */
+        opacity: 1;
+        /* Hiện rõ */
+    }
+}
+
+.appointment-header {
+    display: flex;
+    padding-top: 20px;
+}
+
+
+.appointment-header .Search {
+    border-radius: 20px;
+    margin-left: 230px;
+    padding: 10px 10px 10px 70px;
+    font-size: 16px;
+    width: 40%;
+    background-color: #F5F3FF;
+}
+
+.fade-out {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.slide-in {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+.payment-container {
+    padding: 60px 0 0 0;
+}
+
+.credit-container {
+    display: flex;
+    width: 300px;
+    padding-top: 60px;
+}
+
+.credit-container img {
+    padding-right: 120px;
+}
+
+.payment-function {
+    display: block;
+    position: absolute;
+    bottom: 50px;
+    left: 90px;
+    height: 120px;
+}
+
+.Button-payment {
+    color: #3371eb;
+    background-color: #ffffff;
+}
+
+.payment-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.payment-modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 800px;
+    height: 300px;
+    text-align: center;
+}
+
+.payment-close-button {
+    position: absolute;
+    top: 200px;
+    right: 270px;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.image-preview {
+    width: 330px;
+    height: 180px;
+    padding-left: 50px;
+}
+
+.image-options {
+    display: flex;
+    justify-content: left;
+    margin-top: 20px;
+    padding-left: 50px;
+}
+
+.image-option {
+    width: 150px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.Add-button {
+    height: 24px;
+    background-color: #e6e3e3;
+    padding: 5px;
+    position: absolute;
+    bottom: 240px;
+    right: 280px;
+}
+
+.image-option img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.listdoctor-container {
+    width: 1200px;
+    height: 100%;
+    display: flex;
+    padding-top: 50px;
+    gap: 50px;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
+.doctor-container {
+    padding: 10px;
+    border-radius: 20px;
+    width: 300px;
+    height: 200px;
+    background-color: #ffffff;
+    border: 1px solid #cecece;
+    box-shadow: 4px 4px 4px 4px rgba(0.3, 0.3, 0.3, 0.3);
+}
+
+.head-doctor-container {
+    display: flex;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.doctor-img {
+    object-fit: fill;
+    width: 70px;
+    height: 70px;
+}
+
+.star {
+    margin-left: -15px;
+    object-fit: fill;
+    width: 20px;
+    height: 20px;
+}
+
+.head-doctor-container p {
+    margin-left: 130px;
+    color: #5990ff;
+}
+
+.doctor-container h1 {
+    font-size: 20px;
+    color: #00738C;
+}
+
+.main-doctor-container {
+    display: flex;
+}
+
+.doctor-info1 h1 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFB800;
+}
+
+.doctor-info1 h2 {
+    font-size: 20px;
+    font-weight: lighter;
+    color: #FFB800;
+}
+
+.doctor-info2 {
+    padding-left: 40px;
+    text-align: right;
+    font-size: 10px;
+    color: #00738C;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+}

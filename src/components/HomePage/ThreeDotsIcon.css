@@ -1,0 +1,38 @@
+.three-dots-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    cursor: pointer;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    background-color: black;
+    border-radius: 50%;
+    margin: 2px 0;
+}
+
+.menu {
+    position: absolute;
+    top: 300px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    border-radius: 8px;
+}
+
+.menu p {
+    margin: 0;
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+.menu p:hover {
+    background-color: #f0f0f0;
+}
