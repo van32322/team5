@@ -1,0 +1,171 @@
+/* CSS chung */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: auto;
+}
+
+img {
+    width: 50%;
+    height: auto;
+}
+
+.form-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.tabs {
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #000000;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.tab {
+    width: 50%;
+    text-align: center;
+    font-size: 18px;
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+.indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    /* Thanh màu hồng có độ rộng bằng 50% */
+    height: 4px;
+    background-color: #F369FF;
+    transition: left 0.3s ease;
+    /* Hiệu ứng di chuyển thanh */
+}
+
+.active {
+    color: #F369FF;
+    border-bottom: 4px solid #F369FF;
+}
+
+#confirmationText {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+    /* Cho phép văn bản xuống dòng khi cần thiết */
+    white-space: normal;
+    /* Đảm bảo văn bản xuống dòng bình thường */
+    width: 420px;
+    /* Cùng width với input box để văn bản không vượt quá chiều rộng */
+}
+
+.input-box {
+    position: relative;
+    width: 420px;
+    height: 46px;
+    border: 1px solid #C4C4C4;
+    border-radius: 24px;
+    margin-bottom: 10px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+}
+
+
+.input-box input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 18px;
+    color: #000;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.button {
+    width: 288px;
+    height: 54px;
+    background-color: #61C9F6;
+    border-radius: 100px;
+    text-align: center;
+    font-size: 30px;
+    color: #000;
+    line-height: 54px;
+    cursor: pointer;
+    margin: 0 auto;
+    transition: background-color 0.3s ease;
+    display: block;
+}
+
+.button:active {
+    background-color: #4BA3D2;
+}
+
+.remember-pass {
+    font-size: 18px;
+    color: #C4C4C4;
+}
+
+.forgot-password {
+    width: 178px;
+    text-align: right;
+    color: #68E1FC;
+    font-size: 18px;
+    margin-left: 140px;
+}
+
+
+/* Hiệu ứng ẩn/hiện */
+.hidden {
+    display: none;
+}
+
+.form {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.form:not(.hidden) {
+    opacity: 1;
+}
+
+.logo {
+    width: 150px;
+    /* Thay đổi giá trị này để điều chỉnh kích thước logo */
+    height: auto;
+    /* Giữ tỉ lệ ban đầu của hình ảnh */
+    margin-bottom: 20px;
+    /* Tạo khoảng cách dưới logo nếu cần */
+}

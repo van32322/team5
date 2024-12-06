@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Out</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Hình ảnh bệnh viện -->
+        <img src="hospital.png" alt="Hospital Image">
+
+        <!-- Form đăng nhập/đăng ký -->
+        <div class="form-container">
+            <img src="https://inhoangkien.vn/wp-content/uploads/2020/04/Logo-B%E1%BB%99-Y-t%E1%BA%BF-01-e1585994422207-300x213.png" alt="Logo" class="logo">
+
+            <!-- Các tab -->
+            <div class="tabs">
+                <div class="tab active" id="logoutTab">Log Out</div>
+            </div>
+
+            <!-- Form Log Out -->
+            <form id="logoutForm" class="form">
+                <p style="font-size: 18px; color: #000;">Are you sure you want to log out?</p>
+
+                <!-- Button Log Out -->
+                <div class="button" id="logoutButton">Log Out</div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const logoutButton = document.getElementById('logoutButton');
+
+        logoutButton.addEventListener('click', () => {
+            alert("You have been logged out.");
+            // Redirect to login page or other pages after logout
+            window.location.href = "Login_and_register.html"; // Giả sử bạn muốn chuyển về trang login
+        });
+    </script>
+</body>
+</html>
