@@ -568,6 +568,7 @@ input::placeholder {
     display: flex;
     align-items: center;
     margin-right: 230px;
+    margin-bottom: 6px;
 }
 
 .options a {
