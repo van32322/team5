@@ -1,0 +1,179 @@
+.CB1Container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+}
+
+.CB1Header {
+    display: flex;
+    width: 100%;
+    height: 260px;
+    padding: 40px 400px 40px 400px;
+    background-color: #E8E8E8;
+}
+
+.CB1Header img {
+    width: 150px;
+    height: 130px;
+}
+
+.inCB1Header {
+
+    text-align: left;
+    padding-left: 20px;
+}
+
+.inCB1Header h1,
+h2,
+h3,
+h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.inCB1Header h2 {
+    color: #68E1FC;
+}
+
+.CB1Container h3 {
+    margin-left: 4px;
+    color: #FFB800;
+}
+
+.CB1Container h4 {
+    margin-left: 4px;
+}
+
+.priceContainer {
+    position: absolute;
+    top: 300px;
+    display: flex;
+    border: 1px solid #BC4141;
+    border-radius: 20px;
+    padding: 20px 50px 20px 20px;
+    left: 20%;
+}
+
+.priceContainer h1 {
+    font-size: 20px;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+    background-color: #51A7FD;
+    border-radius: 50%;
+    margin: 10px 20px 0 20px;
+}
+
+.form {
+    display: grid;
+    position: absolute;
+    top: 400px;
+    left: 27%;
+}
+
+input::placeholder {
+    color: #aeaeae;
+    /* Adjust the color as needed */
+    opacity: 1;
+    /* Adjust the opacity for desired darkness */
+    font-weight: bold;
+    /* Make the text bold */
+}
+
+.form input {
+    border: 0.2px solid #000;
+    border-radius: 5px;
+    margin-top: 30px;
+    width: 700px;
+    height: 50px;
+    padding-left: 100px;
+    background-position: 30px center;
+    background-repeat: no-repeat;
+}
+
+
+.phoneInput {
+    background-image: url("../../assets/images/call.png");
+}
+
+.emailInput {
+    background-image: url("../../assets/images/email.png");
+}
+
+.birthYearInput {
+    background-image: url("../../assets/images/cm.png");
+}
+
+.cityInput {
+    background-image: url("../../assets/images/place.png");
+}
+
+.form textarea {
+    width: 700px;
+    height: 200px;
+}
+
+.hoaDonContainer {
+    font-size: 25px;
+    text-align: left;
+    position: absolute;
+    top: 1300px;
+    left: 30%;
+    width: 610px;
+    height: auto;
+    background-color: #E7E7E7;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.thanhToan {
+    display: flex;
+    position: absolute;
+    top: 1250px;
+    left: 28.5%;
+}
+
+.pa {
+    position: absolute;
+    top: 1500px;
+    left: 30%;
+    margin-top: 40px;
+    font-size: 16px;
+}
+
+.submitButton {
+    position: absolute;
+    top: 1380px;
+    left: 7%;
+    width: 600px;
+    height: 90px;
+    background-color: #FFB800;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 30px;
+}
+
+.luuYContainer {
+    font-size: 10px;
+    position: absolute;
+    width: 605px;
+    left: 30%;
+    top: 1590px;
+    height: auto;
+    padding: 5px 50px 5px 50px;
+    background-color: rgba(104, 225, 252, 0.4);
+}
+
+.dieuKhoanContainer {
+    position: absolute;
+    top: 1900px;
+    left: 27%;
+    padding-bottom: 100px;
+}

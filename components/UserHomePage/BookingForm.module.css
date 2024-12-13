@@ -1,0 +1,67 @@
+.bookingContainer {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.DTHeader {
+    display: flex;
+    width: 100%;
+    height: 200px;
+    padding: 40px 400px 40px 400px;
+    background-color: #E8E8E8;
+}
+
+.DTHeader img {
+    margin-right: 40px;
+    width: 100px;
+    height: 100px;
+}
+
+.form {
+    display: grid;
+    position: absolute;
+    top: 400px;
+    left: 27%;
+}
+
+.form input {
+    border: 0.2px solid #000;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 500px;
+    height: 50px;
+    padding-left: 60px;
+    background-position: 30px center;
+    background-repeat: no-repeat;
+}
+
+input::placeholder {
+    color: #aeaeae;
+    /* Adjust the color as needed */
+    opacity: 1;
+    /* Adjust the opacity for desired darkness */
+    font-weight: bold;
+    /* Make the text bold */
+}
+
+.formGroup2 {
+    display: grid;
+}
+
+.submitButton {
+    position: absolute;
+    top: 450px;
+    left: -9%;
+    width: 600px;
+    height: 90px;
+    background-color: #FFB800;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 30px;
+}
