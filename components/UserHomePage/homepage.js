@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styles from "./UserHP.module.css"
 import background from "../../assets/images/background.png";
 import Searchicon from "../../assets/images/SearchLogo.png";
@@ -19,11 +19,13 @@ import hos4 from "../../assets/images/hos4.png";
 import hos5 from "../../assets/images/hos5.png";
 import ad from "../../assets/images/ad.png";
 import Header from './Header'
+import yh from '../../assets/images/Yhoc.png'
 function Homepage() {
+    const targetRef = useRef(null);
     return (
         <div>
             <div className={styles.UserHPContainer}>
-                <Header></Header>
+                <Header targetRef={targetRef} ></Header>
                 <div className={styles.midContainer1}>
                     <img src={background} alt="logo"></img>
                     <p>Nơi khởi nguồn sức khỏe</p>
@@ -138,11 +140,45 @@ function Homepage() {
                     </div>
                 </div>
                 <div className={styles.bottomContainer}>
-                    <img src={ad} alt="ad"></img>
-                    <p>Cơ sở được đặt khám nhiều nhất</p>
+                    <img className={styles.imgg} src={ad} alt="ad"></img>
+                    <p ref={targetRef}>Khám theo chuyên khoa</p>
                     <div className={styles.inbottomContainer}>
-                        <div className={styles.ininbottomContainer}></div>
+                        <div className={styles.ininbottomContainer}>
+                            <img src={yh} alt="logologo"></img>
+                        </div>
+                        <div className={styles.ininbottomContainer}>
+                            <img src={yh} alt="logologo"></img>
+                        </div>
+                        <div className={styles.ininbottomContainer}>
+                            <img src={yh} alt="logologo"></img>
+                        </div>
+                        <div className={styles.ininbottomContainer}>
+                            <img src={yh} alt="logologo"></img>
+                        </div>
+                        <div className={styles.ininbottomContainer}>
+                            <img src={yh} alt="logologo"></img>
+                        </div>
+
                     </div>
+                    <div className={styles.inbottomContainer}>
+                        <div className={styles.ininbottomContainer}>
+                            <img src={yh} alt="logologo"></img>
+                        </div>
+                        <div className={styles.ininbottomContainer}>
+                            <img src={yh} alt="logologo"></img>
+                        </div>
+                        <div className={styles.ininbottomContainer}>
+                            <img src={yh} alt="logologo"></img>
+                        </div>
+                        <div className={styles.ininbottomContainer}>
+                            <img src={yh} alt="logologo"></img>
+                        </div>
+                        <div className={styles.ininbottomContainer}>
+                            <img src={yh} alt="logologo"></img>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>

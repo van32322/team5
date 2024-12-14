@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { useDispatch } from "react-redux";
-import { setUserLoginInfo } from "../../redux/slice/accountSlice"; // Import action từ slice của Redux
+import { setUserLoginInfo } from "../../redux/slice/accountSlice"; // Import action from Redux slice
 import cc from "../../assets/images/cc.png";
 import axios from "axios";
 import styles from "./UserHP.module.css";
@@ -9,15 +9,15 @@ import styles from "./UserHP.module.css";
 function Login2() {
     const [activesubTab, setActivesubTab] = useState("login2");
     const [setUser] = useState('');
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Hook để điều hướng
     const [passwordVisible, setPasswordVisible] = useState({
         password1: false,
     });
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState(""); // Changed to match API (username)
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-    const dispatch = useDispatch();  // Dùng dispatch để gọi action Redux
+    const dispatch = useDispatch();  // Dispatch to call action in Redux
 
     const handlesubTabClick = (tab) => {
         if (tab !== activesubTab) {
@@ -25,12 +25,30 @@ function Login2() {
         }
     };
 
+    // Handle the token refresh automatically if the access token expires
+    const refreshAccessToken = async () => {
+        try {
+            const response = await axios.post("http://localhost:8081/v1/api/refresh-token", {}, {
+                withCredentials: true, // Giữ cookie trong yêu cầu
+            });
+            if (response.status === 200) {
+                localStorage.setItem("access_token", response.data.accessToken);
+            }
+        } catch (error) {
+            console.error("Failed to refresh token", error);
+            setErrorMessage("Phiên làm việc hết hạn. Vui lòng đăng nhập lại.");
+            // Optional: Redirect to login page on token expiry
+            navigate("/login");
+        }
+    };
+
+    // Handle login submit and authentication
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
 
         try {
             const response = await axios.post("http://localhost:8081/v1/api/login", {
-                email: email,
+                username: username, // API expects "username" instead of "email"
                 password: password,
             });
 
@@ -38,13 +56,22 @@ function Login2() {
                 // Successful login
                 const userData = response.data.user; // Assuming user data is returned in this format
                 setUser(userData); // Set user data correctly
-                localStorage.setItem("token", response.data.access_token);
+                localStorage.setItem("access_token", response.data.access_token); // Store token
+                document.cookie = `refreshToken=${response.data.refreshToken}; HttpOnly; Path=/`;
 
                 // Dispatch action to store user info in Redux
                 dispatch(setUserLoginInfo(userData));
 
-                setIsLoginModalOpen(true);
-                navigate("/"); // Redirect to home or desired page
+                // Check user role (assuming "role" is part of the response)
+                const userRole = userData.role;  // Assuming role can be 'admin' or 'user'
+
+                if (userRole === 'admin') {
+                    navigate("/admin"); // Redirect to Admin page
+                } else if (userRole === 'user') {
+                    navigate("/user"); // Redirect to User page
+                }
+
+                setIsLoginModalOpen(true); // Open modal on successful login
             } else {
                 setErrorMessage(response.data.message || "Login failed");
             }
@@ -54,6 +81,7 @@ function Login2() {
         }
     };
 
+    // Toggle password visibility
     const togglePasswordVisibility = (id) => {
         setPasswordVisible((prevState) => ({
             ...prevState,
@@ -61,18 +89,34 @@ function Login2() {
         }));
     };
 
+    // Automatically refresh the access token on page load
+    useEffect(() => {
+        // Check if the token is expired and refresh
+        const token = localStorage.getItem("access_token");
+        if (token) {
+            const decoded = JSON.parse(atob(token.split('.')[1])); // Decode JWT token
+            const expTime = decoded.exp * 1000; // Token expiration time
+            const currentTime = new Date().getTime();
+
+            // If token is about to expire within 5 minutes
+            if (expTime - currentTime < 5 * 60 * 1000) {
+                refreshAccessToken(); // Refresh token before it expires
+            }
+        }
+    }, []);
+
     return (
         <div>
             <form className={styles.form} onSubmit={handleLoginSubmit}>
                 <div className={styles.phone}>
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="username">Email</label>
                     <input
                         type="text"
-                        id="email"
+                        id="username" // Matches "username" in API
                         placeholder="Email........."
                         className={styles.inputField}
-                        onChange={(e) => setEmail(e.target.value)}
-                        name="email"
+                        onChange={(e) => setUsername(e.target.value)} // Set "username"
+                        name="username"
                     />
                 </div>
                 <div className={styles.inputGroup}>

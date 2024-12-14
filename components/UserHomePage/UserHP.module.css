@@ -394,17 +394,19 @@ input::placeholder {
     height: 1550px;
 }
 
-.bottomContainer img {
+.bottomContainer .imgg {
     width: 1300px;
     height: 700px;
     margin-left: 100px;
 }
 
 .inbottomContainer {
-    height: 487px;
+    height: auto;
     width: 100%;
     margin: 50px 0 0 50px;
     display: flex;
+    gap: 50px;
+    padding: 0 100px 0 100px;
 }
 
 .bottomContainer p {
@@ -414,10 +416,16 @@ input::placeholder {
 }
 
 .ininbottomContainer {
-    width: 343px;
-    height: 487px;
+    width: 200px;
+    height: 200px;
     background-color: #fff;
     border-radius: 20px;
+}
+
+.ininbottomContainer img {
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
 }
 
 .LoginContainer {
@@ -772,10 +780,7 @@ input::placeholder {
     border-radius: 10px;
 }
 
-.option2 {
-    display: flex;
-    gap: 68px;
-}
+
 
 .option2 button {
     text-align: center;

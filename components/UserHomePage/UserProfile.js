@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import style from "./UserHP.module.css"
+import React, { Link, useState, useEffect } from 'react';
+import styles from "./UserProfile.module.css"
 import Header from "./Header"
+import LichKham from "./LichKham"
 const UserProfiles = () => {
+    const [activeTab, setActiveTab] = useState('lichKham');
     const [profiles, setProfiles] = useState([]); // Danh sách hồ sơ
     const [selectedProfile, setSelectedProfile] = useState(null); // Hồ sơ được chọn
     const [isEditing, setIsEditing] = useState(false); // Trạng thái chỉnh sửa
@@ -13,6 +15,9 @@ const UserProfiles = () => {
         gender: '',
         relation: [],
     });
+    const handleTabClick = (tab) => {
+        setActiveTab(tab); // Đổi tab hiện tại
+    };
     const [isAddingProfile, setIsAddingProfile] = useState(false);
     // Dữ liệu giả lập
     const mockData = [
@@ -182,453 +187,381 @@ const UserProfiles = () => {
             alert('Không thể xóa hồ sơ, vui lòng thử lại.');
         }
     };
-    return (
-        <div className={style.UserHPContainer}>
+    return (<>
+        <div className={styles.UserHPContainer}>
             <Header></Header>
-            <div style={styles.container}>
-                {/* Sidebar danh sách hồ sơ */}
-                <div style={styles.sidebar}>
-                    <h3>Danh sách hồ sơ</h3>
-                    {profiles.map((profile, index) => (
-                        <div
-                            key={profile.id}
-                            style={{
-                                ...styles.profileItem,
-                                backgroundColor: selectedProfile?.id === profile.id ? '#007BFF' : '#f0f0f0',
-                                color: selectedProfile?.id === profile.id ? '#fff' : '#000',
-                            }}
-                            onClick={() => {
-                                if (!isEditing) {
-                                    setSelectedProfile(profile);
-                                }
-                            }}
-                        >
-                            Hồ sơ {index + 1}
-                        </div>
-                    ))}
-                    {/* Nút thêm hồ sơ */}
-                    <button style={styles.addButton} onClick={() => handleAddProfileForm()}>
-                        Thêm hồ sơ
-                    </button>
-                </div>
+            <div className={styles.functionProfile}>
+                <ul>
+                    <li className={activeTab === 'lichKham' ? styles.active : ''}
+                        onClick={() => handleTabClick('lichKham')}>Lịch khám</li>
+                    <li className={activeTab === 'hoSo' ? styles.active : ''}
+                        onClick={() => handleTabClick('hoSo')}>Hồ sơ</li>
+                </ul>
+            </div>
 
-                {/* Thông tin chi tiết hồ sơ */}
-                <div style={styles.detailsContainer}>
-                    {isAddingProfile ? (
-                        <>
-                            <div style={styles.formContainer}>
-                                <h2 style={styles.title}>Thêm hồ sơ mới</h2>
-                                <div style={styles.formGroup2}>
-                                    <label style={styles.label}>Họ và tên *</label>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        value={newProfile.name}
-                                        onChange={handleInputChange}
-                                        style={styles.input}
-                                    />
-                                </div>
-                                <div style={styles.formGroup2}>
-                                    <label style={styles.label}>Số điện thoại *</label>
-                                    <input
-                                        type="text"
-                                        name="phone"
-                                        value={newProfile.phone}
-                                        onChange={handleInputChange}
-                                        style={styles.input}
-                                    />
-                                </div>
-                                <div style={styles.formGroup2}>
-                                    <label style={styles.label}>Ngày sinh *</label>
-                                    <input
-                                        type="date"
-                                        name="dob"
-                                        value={newProfile.dob}
-                                        onChange={handleInputChange}
-                                        style={styles.input}
-                                    />
-                                </div>
-                                <div style={styles.formGroup2}>
-                                    <label style={styles.label}>Giới tính *</label>
-                                    <select
-                                        name="gender"
-                                        value={newProfile.gender}
-                                        onChange={handleInputChange}
-                                        style={styles.input}
-                                    >
-                                        <option value="">Chọn giới tính</option>
-                                        <option value="Nam">Nam</option>
-                                        <option value="Nữ">Nữ</option>
-                                    </select>
-                                </div>
-                                <div style={styles.box}>
-                                    <div style={styles.formGroup2}>
-                                        <label style={styles.label}>Tỉnh/Thành phố </label>
-                                        <select
-                                            name="city"
-                                            value={newProfile.city}
-                                            onChange={handleInputChange}
-                                            style={styles.input}
-                                        >
-                                            <option value="">Chọn Tỉnh/Thành phố</option>
-                                            <option value="Hà Nội">Hà Nội</option>
-                                            <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
-                                            <option value="Đà Nẵng">Đà Nẵng</option>
-                                            <option value="Hải Phòng">Hải Phòng</option>
-                                            <option value="Khác">Khác</option>
-                                        </select>
-                                    </div>
-                                    <div style={styles.formGroup2}>
-                                        <label style={styles.label}>Dân tộc </label>
-                                        <select
-                                            name="ethnicity"
-                                            value={newProfile.ethnicity}
-                                            onChange={handleInputChange}
-                                            style={styles.input}
-                                        >
-                                            <option value="">Chọn dân tộc</option>
-                                            <option value="Kinh">Kinh</option>
-                                            <option value="Tày">Tày</option>
-                                            <option value="Thái">Thái</option>
-                                            <option value="Khmer">Khmer</option>
-                                            <option value="Khác">Khác</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div style={styles.formGroup2}>
-                                    <label style={styles.label}>Địa chỉ </label>
-                                    <input
-                                        type="text"
-                                        name="address"
-                                        value={newProfile.address}
-                                        onChange={handleInputChange}
-                                        style={styles.input}
-                                    />
-                                </div>
-                                <div style={styles.formGroup2}>
-                                    <label style={styles.label}>Số CMND/CCCD *</label>
-                                    <input
-                                        type="text"
-                                        name="idCard"
-                                        value={newProfile.idCard}
-                                        onChange={handleInputChange}
-                                        style={styles.input}
-                                    />
-                                </div>
-
-                                <div style={styles.formGroup2}>
-                                    <label style={styles.label}>Nghề nghiệp </label>
-                                    <input
-                                        type="text"
-                                        name="job"
-                                        value={newProfile.job}
-                                        onChange={handleInputChange}
-                                        style={styles.input}
-                                    />
-                                </div>
-                                <div style={styles.formGroup2}>
-                                    <label style={styles.label}>Email </label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={newProfile.email}
-                                        onChange={handleInputChange}
-                                        style={styles.input}
-                                    />
-                                </div>
-                                <div style={styles.formGroup2}>
-                                    <label style={styles.label}>Mã BHYT </label>
-                                    <input
-                                        type="text"
-                                        name="healthInsuranceCode"
-                                        value={newProfile.healthInsuranceCode}
-                                        onChange={handleInputChange}
-                                        style={styles.input}
-                                    />
-                                </div>
-                                <div style={styles.formGroup2}>
-                                    <label style={styles.label}>Mối quan hệ *</label>
-                                    <div>
-                                        <label>
-                                            <input
-                                                type="checkbox"
-                                                value="Cha"
-                                                checked={newProfile.relation.includes('Cha')}
-                                                onChange={handleCheckboxChange}
-                                            />
-                                            Cha
-                                        </label>
-                                        <label>
-                                            <input
-                                                type="checkbox"
-                                                value="Mẹ"
-                                                checked={newProfile.relation.includes('Mẹ')}
-                                                onChange={handleCheckboxChange}
-                                            />
-                                            Mẹ
-                                        </label>
-                                        <label>
-                                            <input
-                                                type="checkbox"
-                                                value="Chồng"
-                                                checked={newProfile.relation.includes('Chồng')}
-                                                onChange={handleCheckboxChange}
-                                            />
-                                            Chồng
-                                        </label>
-                                        <label>
-                                            <input
-                                                type="checkbox"
-                                                value="Vợ"
-                                                checked={newProfile.relation.includes('Vợ')}
-                                                onChange={handleCheckboxChange}
-                                            />
-                                            Vợ
-                                        </label>
-                                        <label>
-                                            <input
-                                                type="checkbox"
-                                                value="Khác"
-                                                checked={newProfile.relation.includes('Khác')}
-                                                onChange={handleCheckboxChange}
-                                            />
-                                            Khác
-                                        </label>
-                                    </div>
-                                </div>
-                                <div style={styles.actionButtons}>
-                                    <button style={styles.saveButton} onClick={handleSaveAddProfile}>
-                                        Lưu
-                                    </button>
-                                    <button style={styles.cancelButton} onClick={handleCancelAddProfile}>
-                                        Hủy
-                                    </button>
-                                </div>
+            <div className={styles.container}>
+                {activeTab === 'hoSo' && (<>
+                    <div className={styles.sidebar}>
+                        <h3>Danh sách hồ sơ</h3>
+                        {profiles.map((profile, index) => (
+                            <div
+                                key={profile.id}
+                                className={styles.profileItem}
+                                style={{
+                                    backgroundColor: selectedProfile?.id === profile.id ? '#007BFF' : '#f0f0f0',
+                                    color: selectedProfile?.id === profile.id ? '#fff' : '#000',
+                                }}
+                                onClick={() => {
+                                    if (!isEditing) {
+                                        setSelectedProfile(profile); // Lưu hồ sơ đã chọn vào state
+                                    }
+                                }}
+                            >
+                                Hồ sơ {index + 1}
                             </div>
-                        </>
-                    ) : (
-                        <>
-                            {selectedProfile ? (
-                                <>
-                                    {!isEditing ? (
-                                        <>
-                                            <h2 style={styles.title}>{selectedProfile.name}</h2>
-                                            <p style={styles.detailsParagraph}><strong>Mã BIN:</strong> {selectedProfile.binCode}</p>
-                                            <p style={styles.detailsParagraph}><strong>Số điện thoại:</strong> {selectedProfile.phone}</p>
-                                            <p style={styles.detailsParagraph}><strong>Ngày sinh:</strong> {selectedProfile.dob}</p>
-                                            <p style={styles.detailsParagraph}><strong>Giới tính:</strong> {selectedProfile.gender}</p>
-                                            <p style={styles.detailsParagraph}><strong>Địa chỉ:</strong> {selectedProfile.address}</p>
-                                            <p style={styles.detailsParagraph}><strong>Mã BHYT:</strong> {selectedProfile.healthInsuranceCode}</p>
-                                            <p style={styles.detailsParagraph}><strong>Số CMND/CCCD:</strong> {selectedProfile.idCard}</p>
-                                            <p style={styles.detailsParagraph}><strong>Dân tộc:</strong> {selectedProfile.ethnicity}</p>
-                                            <p style={styles.detailsParagraph}><strong>Nghề nghiệp:</strong> {selectedProfile.job}</p>
-                                            <p style={styles.detailsParagraph}><strong>Email:</strong> {selectedProfile.email}</p>
-                                            <div style={styles.actionButtons}>
-                                                <button style={styles.editButton} onClick={handleStartEdit}>Chỉnh sửa</button>
-                                                <button style={styles.deleteButton} onClick={() => handleDeleteProfile(selectedProfile.id)}>Xóa</button>
-                                            </div>
-                                        </>
-                                    ) : (
-                                        <div>
-                                            <h2 style={styles.title}>Chỉnh sửa hồ sơ</h2>
-                                            <div style={styles.formGroup}>
-                                                <p style={styles.detailsParagraph}><strong>Mã BIN:</strong></p>
-                                                <input
-                                                    type="text"
-                                                    name="binCode"
-                                                    value={editForm.binCode}
-                                                    onChange={handleInputChange}
-                                                />
-                                            </div>
-                                            <div style={styles.formGroup}>
-                                                <p style={styles.detailsParagraph}><strong>Số điện thoại:</strong></p>
-                                                <input
-                                                    type="text"
-                                                    name="phone"
-                                                    value={editForm.phone}
-                                                    onChange={handleInputChange}
-                                                />
-                                            </div>
-                                            <div style={styles.formGroup}>
-                                                <p style={styles.detailsParagraph}><strong>Ngày sinh:</strong></p>
-                                                <input
-                                                    type="text"
-                                                    name="dob"
-                                                    value={editForm.dob}
-                                                    onChange={handleInputChange}
-                                                />
-                                            </div>
-                                            <div style={styles.formGroup}>
-                                                <p style={styles.detailsParagraph}><strong>Giới tính:</strong></p>
-                                                <input
-                                                    type="text"
-                                                    name="gender"
-                                                    value={editForm.gender}
-                                                    onChange={handleInputChange}
-                                                />
-                                            </div>
-                                            <div style={styles.formGroup}>
-                                                <p style={styles.detailsParagraph}><strong>Địa chỉ:</strong></p>
-                                                <input
-                                                    type="text"
-                                                    name="address"
-                                                    value={editForm.address}
-                                                    onChange={handleInputChange}
-                                                />
-                                            </div>
-                                            <div style={styles.formGroup}>
-                                                <p style={styles.detailsParagraph}><strong>Mã BHYT:</strong></p>
-                                                <input
-                                                    type="text"
-                                                    name="healthInsuranceCode"
-                                                    value={editForm.healthInsuranceCode}
-                                                    onChange={handleInputChange}
-                                                />
-                                            </div>
-                                            <div style={styles.formGroup}>
-                                                <p style={styles.detailsParagraph}><strong>Số CMND/CCCD:</strong></p>
-                                                <input
-                                                    type="text"
-                                                    name="idCard"
-                                                    value={editForm.idCard}
-                                                    onChange={handleInputChange}
-                                                />
-                                            </div>
-                                            <div style={styles.formGroup}>
-                                                <p style={styles.detailsParagraph}><strong>Dân tộc:</strong></p>
-                                                <input
-                                                    type="text"
-                                                    name="ethnicity"
-                                                    value={editForm.ethnicity}
-                                                    onChange={handleInputChange}
-                                                />
-                                            </div>
-                                            <div style={styles.formGroup}>
-                                                <p style={styles.detailsParagraph}><strong>Nghề nghiệp:</strong></p>
-                                                <input
-                                                    type="text"
-                                                    name="job"
-                                                    value={editForm.job}
-                                                    onChange={handleInputChange}
-                                                />
-                                            </div>
-                                            <div style={styles.formGroup}>
-                                                <p style={styles.detailsParagraph}><strong>Email:</strong></p>
-                                                <input
-                                                    type="text"
-                                                    name="email"
-                                                    value={editForm.email}
-                                                    onChange={handleInputChange}
-                                                />
-                                            </div>
-                                            <div style={styles.actionButtons}>
-                                                <button style={styles.saveButton} onClick={handleSaveEdit}>
-                                                    Lưu
-                                                </button>
-                                                <button style={styles.cancelButton} onClick={handleCancelEdit}>
-                                                    Hủy
-                                                </button>
-                                            </div>
+                        ))}
+
+                        {/* Nút thêm hồ sơ */}
+                        <button className={styles.addButton} onClick={() => handleAddProfileForm()}>
+                            Thêm hồ sơ
+                        </button>
+                    </div>
+                    <div className={styles.detailsContainer}>
+                        {isAddingProfile ? (
+                            <>
+                                <div className={styles.formContainer}>
+                                    <h2 className={styles.title}>Thêm hồ sơ mới</h2>
+                                    <div className={styles.formGroup2}>
+                                        <label className={styles.label}>Họ và tên *</label>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            value={newProfile.name}
+                                            onChange={handleInputChange}
+                                            className={styles.input}
+                                        />
+                                    </div>
+                                    <div className={styles.formGroup2}>
+                                        <label className={styles.label}>Số điện thoại *</label>
+                                        <input
+                                            type="text"
+                                            name="phone"
+                                            value={newProfile.phone}
+                                            onChange={handleInputChange}
+                                            className={styles.input}
+                                        />
+                                    </div>
+                                    <div className={styles.formGroup2}>
+                                        <label className={styles.label}>Ngày sinh *</label>
+                                        <input
+                                            type="date"
+                                            name="dob"
+                                            value={newProfile.dob}
+                                            onChange={handleInputChange}
+                                            className={styles.input}
+                                        />
+                                    </div>
+                                    <div className={styles.formGroup2}>
+                                        <label className={styles.label}>Giới tính *</label>
+                                        <select
+                                            name="gender"
+                                            value={newProfile.gender}
+                                            onChange={handleInputChange}
+                                            className={styles.input}
+                                        >
+                                            <option value="">Chọn giới tính</option>
+                                            <option value="Nam">Nam</option>
+                                            <option value="Nữ">Nữ</option>
+                                        </select>
+                                    </div>
+                                    <div className={styles.box}>
+                                        <div className={styles.formGroup2}>
+                                            <label className={styles.label}>Tỉnh/Thành phố </label>
+                                            <select
+                                                name="city"
+                                                value={newProfile.city}
+                                                onChange={handleInputChange}
+                                                className={styles.input}
+                                            >
+                                                <option value="">Chọn Tỉnh/Thành phố</option>
+                                                <option value="Hà Nội">Hà Nội</option>
+                                                <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+                                                <option value="Đà Nẵng">Đà Nẵng</option>
+                                                <option value="Hải Phòng">Hải Phòng</option>
+                                                <option value="Khác">Khác</option>
+                                            </select>
                                         </div>
-                                    )}
-                                </>
-                            ) : (
-                                <div>Chọn một hồ sơ để xem chi tiết.</div>
-                            )}
-                        </>
-                    )}
-                </div>
+                                        <div className={styles.formGroup2}>
+                                            <label className={styles.label}>Dân tộc </label>
+                                            <select
+                                                name="ethnicity"
+                                                value={newProfile.ethnicity}
+                                                onChange={handleInputChange}
+                                                className={styles.input}
+                                            >
+                                                <option value="">Chọn dân tộc</option>
+                                                <option value="Kinh">Kinh</option>
+                                                <option value="Tày">Tày</option>
+                                                <option value="Thái">Thái</option>
+                                                <option value="Khmer">Khmer</option>
+                                                <option value="Khác">Khác</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div className={styles.formGroup2}>
+                                        <label className={styles.label}>Địa chỉ </label>
+                                        <input
+                                            type="text"
+                                            name="address"
+                                            value={newProfile.address}
+                                            onChange={handleInputChange}
+                                            className={styles.input}
+                                        />
+                                    </div>
+                                    <div className={styles.formGroup2}>
+                                        <label className={styles.label}>Số CMND/CCCD *</label>
+                                        <input
+                                            type="text"
+                                            name="idCard"
+                                            value={newProfile.idCard}
+                                            onChange={handleInputChange}
+                                            className={styles.input}
+                                        />
+                                    </div>
+
+                                    <div className={styles.formGroup2}>
+                                        <label className={styles.label}>Nghề nghiệp </label>
+                                        <input
+                                            type="text"
+                                            name="job"
+                                            value={newProfile.job}
+                                            onChange={handleInputChange}
+                                            className={styles.input}
+                                        />
+                                    </div>
+                                    <div className={styles.formGroup2}>
+                                        <label className={styles.label}>Email </label>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            value={newProfile.email}
+                                            onChange={handleInputChange}
+                                            className={styles.input}
+                                        />
+                                    </div>
+                                    <div className={styles.formGroup2}>
+                                        <label className={styles.label}>Mã BHYT </label>
+                                        <input
+                                            type="text"
+                                            name="healthInsuranceCode"
+                                            value={newProfile.healthInsuranceCode}
+                                            onChange={handleInputChange}
+                                            className={styles.input}
+                                        />
+                                    </div>
+                                    <div className={styles.formGroup2}>
+                                        <label className={styles.label}>Mối quan hệ *</label>
+                                        <div>
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    value="Cha"
+                                                    checked={newProfile.relation.includes('Cha')}
+                                                    onChange={handleCheckboxChange}
+                                                />
+                                                Cha
+                                            </label>
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    value="Mẹ"
+                                                    checked={newProfile.relation.includes('Mẹ')}
+                                                    onChange={handleCheckboxChange}
+                                                />
+                                                Mẹ
+                                            </label>
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    value="Chồng"
+                                                    checked={newProfile.relation.includes('Chồng')}
+                                                    onChange={handleCheckboxChange}
+                                                />
+                                                Chồng
+                                            </label>
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    value="Vợ"
+                                                    checked={newProfile.relation.includes('Vợ')}
+                                                    onChange={handleCheckboxChange}
+                                                />
+                                                Vợ
+                                            </label>
+                                            <label>
+                                                <input
+                                                    type="checkbox"
+                                                    value="Khác"
+                                                    checked={newProfile.relation.includes('Khác')}
+                                                    onChange={handleCheckboxChange}
+                                                />
+                                                Khác
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div className={styles.actionButtons}>
+                                        <button className={styles.saveButton} onClick={handleSaveAddProfile}>
+                                            Lưu
+                                        </button>
+                                        <button className={styles.cancelButton} onClick={handleCancelAddProfile}>
+                                            Hủy
+                                        </button>
+                                    </div>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                {selectedProfile ? (
+                                    <>
+                                        {!isEditing ? (
+                                            <>
+                                                <h2 className={styles.title}>{selectedProfile.name}</h2>
+                                                <p className={styles.detailsParagraph}><strong>Mã BIN:</strong> {selectedProfile.binCode}</p>
+                                                <p className={styles.detailsParagraph}><strong>Số điện thoại:</strong> {selectedProfile.phone}</p>
+                                                <p className={styles.detailsParagraph}><strong>Ngày sinh:</strong> {selectedProfile.dob}</p>
+                                                <p className={styles.detailsParagraph}><strong>Giới tính:</strong> {selectedProfile.gender}</p>
+                                                <p className={styles.detailsParagraph}><strong>Địa chỉ:</strong> {selectedProfile.address}</p>
+                                                <p className={styles.detailsParagraph}><strong>Mã BHYT:</strong> {selectedProfile.healthInsuranceCode}</p>
+                                                <p className={styles.detailsParagraph}><strong>Số CMND/CCCD:</strong> {selectedProfile.idCard}</p>
+                                                <p className={styles.detailsParagraph}><strong>Dân tộc:</strong> {selectedProfile.ethnicity}</p>
+                                                <p className={styles.detailsParagraph}><strong>Nghề nghiệp:</strong> {selectedProfile.job}</p>
+                                                <p className={styles.detailsParagraph}><strong>Email:</strong> {selectedProfile.email}</p>
+                                                <div className={styles.actionButtons}>
+                                                    <button className={styles.editButton} onClick={handleStartEdit}>Chỉnh sửa</button>
+                                                    <button className={styles.deleteButton} onClick={() => handleDeleteProfile(selectedProfile.id)}>Xóa</button>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <div>
+                                                <h2 className={styles.title}>Chỉnh sửa hồ sơ</h2>
+                                                <div className={styles.formGroup}>
+                                                    <p className={styles.detailsParagraph}><strong>Mã BIN:</strong></p>
+                                                    <input
+                                                        type="text"
+                                                        name="binCode"
+                                                        value={editForm.binCode}
+                                                        onChange={handleInputChange}
+                                                    />
+                                                </div>
+                                                <div className={styles.formGroup}>
+                                                    <p className={styles.detailsParagraph}><strong>Số điện thoại:</strong></p>
+                                                    <input
+                                                        type="text"
+                                                        name="phone"
+                                                        value={editForm.phone}
+                                                        onChange={handleInputChange}
+                                                    />
+                                                </div>
+                                                <div className={styles.formGroup}>
+                                                    <p className={styles.detailsParagraph}><strong>Ngày sinh:</strong></p>
+                                                    <input
+                                                        type="text"
+                                                        name="dob"
+                                                        value={editForm.dob}
+                                                        onChange={handleInputChange}
+                                                    />
+                                                </div>
+                                                <div className={styles.formGroup}>
+                                                    <p className={styles.detailsParagraph}><strong>Giới tính:</strong></p>
+                                                    <input
+                                                        type="text"
+                                                        name="gender"
+                                                        value={editForm.gender}
+                                                        onChange={handleInputChange}
+                                                    />
+                                                </div>
+                                                <div className={styles.formGroup}>
+                                                    <p className={styles.detailsParagraph}><strong>Địa chỉ:</strong></p>
+                                                    <input
+                                                        type="text"
+                                                        name="address"
+                                                        value={editForm.address}
+                                                        onChange={handleInputChange}
+                                                    />
+                                                </div>
+                                                <div className={styles.formGroup}>
+                                                    <p className={styles.detailsParagraph}><strong>Mã BHYT:</strong></p>
+                                                    <input
+                                                        type="text"
+                                                        name="healthInsuranceCode"
+                                                        value={editForm.healthInsuranceCode}
+                                                        onChange={handleInputChange}
+                                                    />
+                                                </div>
+                                                <div className={styles.formGroup}>
+                                                    <p className={styles.detailsParagraph}><strong>Số CMND/CCCD:</strong></p>
+                                                    <input
+                                                        type="text"
+                                                        name="idCard"
+                                                        value={editForm.idCard}
+                                                        onChange={handleInputChange}
+                                                    />
+                                                </div>
+                                                <div className={styles.formGroup}>
+                                                    <p className={styles.detailsParagraph}><strong>Dân tộc:</strong></p>
+                                                    <input
+                                                        type="text"
+                                                        name="ethnicity"
+                                                        value={editForm.ethnicity}
+                                                        onChange={handleInputChange}
+                                                    />
+                                                </div>
+                                                <div className={styles.formGroup}>
+                                                    <p className={styles.detailsParagraph}><strong>Nghề nghiệp:</strong></p>
+                                                    <input
+                                                        type="text"
+                                                        name="job"
+                                                        value={editForm.job}
+                                                        onChange={handleInputChange}
+                                                    />
+                                                </div>
+                                                <div className={styles.formGroup}>
+                                                    <p className={styles.detailsParagraph}><strong>Email:</strong></p>
+                                                    <input
+                                                        type="text"
+                                                        name="email"
+                                                        value={editForm.email}
+                                                        onChange={handleInputChange}
+                                                    />
+                                                </div>
+                                                <div className={styles.actionButtons}>
+                                                    <button className={styles.saveButton} onClick={handleSaveEdit}>
+                                                        Lưu
+                                                    </button>
+                                                    <button className={styles.cancelButton} onClick={handleCancelEdit}>
+                                                        Hủy
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </>
+                                ) : (
+                                    <div>Chọn một hồ sơ để xem chi tiết.</div>
+                                )}
+                            </>
+                        )}
+                    </div>
+                </>
+                )}
+                {activeTab === 'lichKham' && (
+                    <div>
+                        <LichKham></LichKham>
+                    </div>
+                )}
             </div>
         </div>
+    </>
     );
 };
-
-// Hiển thị form thêm hồ sơ
-
-
-// CSS Styles
-const styles = {
-    container: {
-        display: 'flex',
-        gap: '20px',
-        padding: '20px',
-        maxWidth: '1200px',
-        height: '100%',
-        margin: '0 auto',
-        border: '1px solid #ccc',
-        borderRadius: '8px',
-    },
-    sidebar: {
-        flex: 1,
-        borderRight: '1px solid #ccc',
-        paddingRight: '20px',
-    },
-    profileItem: {
-        padding: '10px',
-        margin: '5px 0',
-        borderRadius: '4px',
-        cursor: 'pointer',
-    },
-    addButton: {
-        marginTop: '20px',
-        padding: '10px 20px',
-        backgroundColor: '#28a745',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer',
-    },
-    detailsContainer: {
-        flex: 2,
-        padding: '20px',
-        position: 'relative',
-    },
-    title: {
-        textAlign: 'center',
-    },
-    actionButtons: {
-        position: 'absolute',
-        bottom: '20px',
-        right: '20px',
-        display: 'flex',
-        gap: '10px',
-    },
-    editButton: {
-        backgroundColor: '#007BFF',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '4px',
-        padding: '10px 20px',
-        cursor: 'pointer',
-    },
-    deleteButton: {
-        backgroundColor: '#dc3545',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '4px',
-        padding: '10px 20px',
-        cursor: 'pointer',
-    },
-    detailsParagraph: {
-        fontSize: '20px',
-        padding: '5px',
-    },
-    formGroup: {
-        display: 'flex',
-        marginBottom: '0px',
-    },
-    formGroup2: {
-        display: 'flex',
-        marginBottom: '10px',
-    },
-    formContainer: {
-        maxWidth: '600px',
-        margin: '0 auto',
-    },
-    box: {
-        display: 'flex',
-    }
-};
-
 export default UserProfiles;

@@ -13,23 +13,13 @@ const Form = () => {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [selectedGender, setSelectedGender] = useState("Chọn giới tính");
-    const [selectedRole, setSelectedRole] = useState("Chọn Role");
-    const [selectedPositionId, setSelectedPositionId] = useState("Chọn vai trò");
-    const [selectedImageFile, setSelectedImageFile] = useState(null);
     const [isOpenGender, setIsOpenGender] = useState(false);
-    const [isOpenRole, setIsOpenRole] = useState(false);
-    const [isOpenPositionId, setIsOpenPositionId] = useState(false);
     const [isdkModalOpen, setIsdkModalOpen] = useState(false);
-    const [selectedImage, setSelectedImage] = useState(null);
 
     const genderRef = useRef(null);
-    const roleRef = useRef(null);
-    const positionRef = useRef(null);
     const dkRef = useRef(null);
 
     const genders = ["Male", "Female", "Other"];
-    const positionId = ["Patient", "Doctor", "Professor"];
-    const roleid = ["R1", "R2", "R3"];
 
     const togglePasswordVisibility = (id) => {
         setPasswordVisible((prevState) => ({
@@ -38,31 +28,9 @@ const Form = () => {
         }));
     };
 
-    const handleImageUpload = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            setSelectedImageFile(file);
-            const reader = new FileReader();
-            reader.onload = () => {
-                setSelectedImage(reader.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-
     const handleGenderSelect = (gender) => {
         setSelectedGender(gender);
         setIsOpenGender(false);
-    };
-
-    const handleRoleSelect = (roleid) => {
-        setSelectedRole(roleid);
-        setIsOpenRole(false);
-    };
-
-    const handlePositionIdSelect = (positionId) => {
-        setSelectedPositionId(positionId);
-        setIsOpenPositionId(false);
     };
 
     const handleSubmit = async (e) => {
@@ -78,12 +46,7 @@ const Form = () => {
         formData.append("email", email);
         formData.append("password", password);
         formData.append("gender", selectedGender);
-        formData.append("roleid", selectedRole);
         formData.append("phoneNumber", phone);
-        formData.append("positionId", selectedPositionId);
-        if (selectedImageFile) {
-            formData.append("image", selectedImageFile);
-        }
 
         try {
             const response = await fetch("http://localhost:8081/v1/api/register", {
@@ -111,12 +74,6 @@ const Form = () => {
             }
             if (dkRef.current && !dkRef.current.contains(event.target)) {
                 setIsdkModalOpen(false);
-            }
-            if (roleRef.current && !roleRef.current.contains(event.target)) {
-                setIsOpenRole(false);
-            }
-            if (positionRef.current && !positionRef.current.contains(event.target)) {
-                setIsOpenPositionId(false);
             }
         };
 
@@ -222,76 +179,7 @@ const Form = () => {
                         </div>
                     )}
                 </div>
-
-                {/* Role Select */}
-                <div ref={roleRef}>
-                    <button
-                        type="button"
-                        onClick={() => setIsOpenRole(!isOpenRole)}
-                    >
-                        {selectedRole}
-                    </button>
-                    {isOpenRole && (
-                        <div className={styles.dropdownMenu}>
-                            {roleid.map((role, index) => (
-                                <div
-                                    key={index}
-                                    className={styles.dropdownItem}
-                                    onClick={() => handleRoleSelect(role)}
-                                >
-                                    {role}
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
-
-                {/* Position Select */}
-                <div ref={positionRef}>
-                    <button
-                        type="button"
-                        onClick={() => setIsOpenPositionId(!isOpenPositionId)}
-                    >
-                        {selectedPositionId}
-                    </button>
-                    {isOpenPositionId && (
-                        <div className={styles.dropdownMenu}>
-                            {positionId.map((positionId, index) => (
-                                <div
-                                    key={index}
-                                    className={styles.dropdownItem}
-                                    onClick={() => handlePositionIdSelect(positionId)}
-                                >
-                                    {positionId}
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                </div>
             </div>
-
-            <div className={styles.imgInput}>
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                />
-            </div>
-
-            {selectedImage && (
-                <div className={styles.imgPre}>
-                    <img
-                        src={selectedImage}
-                        alt="Selected"
-                        style={{
-                            border: "3px solid black",
-                            width: "100px",
-                            height: "100px",
-                            marginTop: "10px",
-                        }}
-                    />
-                </div>
-            )}
 
             <button type="submit" className={styles.RegisterButton}>
                 Đăng ký

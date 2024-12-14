@@ -5,7 +5,7 @@ import vector from "../../assets/images/Vector.png";
 import ac from "../../assets/images/account_circle.png";
 import { jwtDecode } from "jwt-decode"; // Sử dụng jwtDecode thay vì jwt_decode
 
-const Header = () => {
+const Header = ({ targetRef }) => {
     const [isOpen, setIsOpen] = useState(false); // Menu "Đặt khám"
     const [ManageProfileOpen, setManageProfileOpen] = useState(false); // Menu Profile
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -33,7 +33,9 @@ const Header = () => {
     useEffect(() => {
         getUserInfoFromToken();
     }, []);
-
+    const handleScrollToSpecialization = () => {
+        targetRef.current?.scrollIntoView({ behavior: 'smooth' }); // Cuộn mượt mà tới phần tử này
+    };
     const handleLogout = () => {
         setIsLoggedIn(false);
         setUserName("");
@@ -68,8 +70,8 @@ const Header = () => {
                             <li>
                                 <Link to="/CoSo">Khám theo cơ sở</Link>
                             </li>
-                            <li>
-                                <Link to="/ChuyenKhoa">Khám theo chuyên khoa</Link>
+                            <li onClick={handleScrollToSpecialization}>
+                                Khám theo chuyên khoa
                             </li>
                             <li>
                                 <Link to="/BacSi">Khám theo bác sĩ</Link>

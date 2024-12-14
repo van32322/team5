@@ -1,23 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';  // Thêm axios để gọi API
 import "./AppointmentsTable.css"; // Import CSS file
-import logo from "../../assets/images/logo.png"
+import logo from "../../assets/images/logo.png";
+
 const AppointmentsTable = () => {
-    const [appointments, setAppointments] = useState([
-        { firstName: "Jane", lastName: "Cooper", phone: "+91 9876543210", dateTime: "13-Aug-2023 at 10:00 AM", status: "Open" },
-        { firstName: "Wade", lastName: "Warren", phone: "+91 9876543210", dateTime: "13-Aug-2023 at 10:00 AM", status: "Booked" },
-        { firstName: "Brooklyn", lastName: "Simmons", phone: "+91 9876543210", dateTime: "13-Aug-2023 at 10:00 AM", status: "Completed" },
-        { firstName: "Cameron", lastName: "Williamson", phone: "+91 9876543210", dateTime: "13-Aug-2023 at 10:00 AM", status: "Open" },
-        { firstName: "Savannah", lastName: "Nguyen", phone: "+91 9876543210", dateTime: "13-Aug-2023 at 10:00 AM", status: "Open" },
-        { firstName: "Darlene", lastName: "Robertson", phone: "+91 9876543210", dateTime: "13-Aug-2023 at 10:00 AM", status: "Completed" },
-        { firstName: "Ronald", lastName: "Richards", phone: "+91 9876543210", dateTime: "13-Aug-2023 at 10:00 AM", status: "Open" },
-        { firstName: "Kathryn", lastName: "Murphy", phone: "+91 9876543210", dateTime: "13-Aug-2023 at 10:00 AM", status: "Open" },
-        { firstName: "Darrell", lastName: "Steward", phone: "+91 9876543210", dateTime: "13-Aug-2023 at 10:00 AM", status: "Open" },
-        { firstName: "Johnson", lastName: "Christopher", phone: "+91 7631286961", dateTime: "17-Aug-2023 at 15:30 PM", status: "Open" },
-    ]);
-    const [selectedAppointment, setSelectedAppointment] = useState(null);
-    const deleteAppointment = (index) => {
-        setAppointments(appointments.filter((_, i) => i !== index));
+    const [appointments, setAppointments] = useState([]);  // State chứa danh sách cuộc hẹn
+    const [selectedAppointment, setSelectedAppointment] = useState(null);  // State chứa cuộc hẹn đang chọn
+    const [loading, setLoading] = useState(true);  // Trạng thái tải dữ liệu
+
+    // Hàm gọi API để lấy dữ liệu cuộc hẹn
+    useEffect(() => {
+        axios.get('https://your-backend-api.com/appointments')  // Cập nhật URL API
+            .then(response => {
+                setAppointments(response.data);  // Lưu dữ liệu vào state
+                setLoading(false);  // Dữ liệu đã được tải
+            })
+            .catch(error => {
+                console.error("Error fetching appointments:", error);
+                setLoading(false);  // Dừng trạng thái tải dù có lỗi
+            });
+    }, []);
+
+    // Hàm xóa cuộc hẹn
+    const deleteAppointment = (id) => {
+        axios.delete(`https://your-backend-api.com/appointments/${id}`)  // Gọi API xóa cuộc hẹn
+            .then(response => {
+                setAppointments(appointments.filter(appointment => appointment.id !== id));  // Xóa khỏi danh sách
+            })
+            .catch(error => {
+                console.error("Error deleting appointment:", error);
+            });
     };
+
+    // Hiển thị khi đang tải dữ liệu
+    if (loading) {
+        return <div>Loading appointments...</div>;
+    }
 
     return (
         <div className="Appointment-table-container">
@@ -33,28 +51,30 @@ const AppointmentsTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {appointments.map((appointment, index) => (
-                        <tr key={index}>
+                    {appointments.map((appointment) => (
+                        <tr key={appointment.id}>
                             <td>{appointment.firstName}</td>
                             <td>{appointment.lastName}</td>
                             <td>{appointment.phone}</td>
                             <td>{appointment.dateTime}</td>
-                            <td><div className={`status ${appointment.status.toLowerCase()}`}>{appointment.status}</div></td>
+                            <td>
+                                <div className={`status ${appointment.status.toLowerCase()}`}>{appointment.status}</div>
+                            </td>
                             <td style={{ textAlign: 'center' }}>
                                 <button className="more-info" onClick={() => setSelectedAppointment(appointment)}>
                                     more info
                                 </button>
                             </td>
                             <td>
-                                <button className="delete" onClick={() => deleteAppointment(index)}>
+                                <button className="delete" onClick={() => deleteAppointment(appointment.id)}>
                                     🗑
                                 </button>
                             </td>
-
                         </tr>
                     ))}
                 </tbody>
             </table>
+
             <div className="pagination">
                 <button>Previous</button>
                 <button>1</button>
@@ -62,19 +82,19 @@ const AppointmentsTable = () => {
                 <button>3</button>
                 <button>Next</button>
             </div>
+
             {/* Modal hiển thị thông tin chi tiết */}
             {selectedAppointment && (
                 <div className="modal">
                     <div className="modal-content">
-
-                        <h2>Information Appointments</h2>
+                        <h2>Appointment Information</h2>
                         <div><strong>Name:</strong> {selectedAppointment.firstName} {selectedAppointment.lastName}</div>
                         <div><strong>Born:</strong> 12/03/1993</div>
-                        <div><strong>Number Phone:</strong> {selectedAppointment.phone}</div>
-                        <div><strong>Old:</strong> 31</div>
-                        <div><strong>Sex:</strong> Male</div>
+                        <div><strong>Phone Number:</strong> {selectedAppointment.phone}</div>
+                        <div><strong>Age:</strong> 31</div>
+                        <div><strong>Gender:</strong> Male</div>
                         <div>
-                            <strong>Suffer:</strong>
+                            <strong>Symptoms:</strong>
                             <textarea rows="3" defaultValue="headache, vomiting"></textarea>
                         </div>
                         <button className="medical-history-btn">Medical History</button>

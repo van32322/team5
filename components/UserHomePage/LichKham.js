@@ -120,6 +120,7 @@ const styles = {
         gap: '20px',
         alignItems: 'center',
         padding: '20px',
+        width: '100%'
     },
     card: {
         display: 'flex',
@@ -127,8 +128,7 @@ const styles = {
         border: '1px solid #ccc',
         padding: '10px',
         borderRadius: '8px',
-        maxWidth: '1200px',
-        width: '100%',
+        width: '1000px',
         backgroundColor: '#f9f9f9',
         boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
     },
@@ -157,7 +157,7 @@ const styles = {
     paginationContainer: {
         position: 'absolute',
         transform: 'translateX(130%)',
-        top: '450px',
+        top: '640px',
         display: 'flex',
         justifyContent: 'center',
         gap: '10px',

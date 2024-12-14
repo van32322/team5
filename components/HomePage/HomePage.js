@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './HomePage.css';
 import logo from '../../assets/images/logo.png';
 import ThreeDotsIcon from "./ThreeDotsIcon";
@@ -11,7 +11,6 @@ import SortBy from './SortBy';
 import PatientTable from './PatientTable';
 import { Link } from 'react-router-dom';
 import AppointmentsTable from './AppointmentsTable';
-import CardList from './CardList'
 import star from '../../assets/images/Star1.png'
 import dblogo from '../../assets/images/element-3.png'
 import aplogo from '../../assets/images/note.png'
@@ -19,71 +18,42 @@ import melogo from '../../assets/images/Medical-Kit.png'
 import stlogo from '../../assets/images/setting-2.png'
 import palogo from '../../assets/images/people.png'
 import mslogo from '../../assets/images/chart-2.png'
-import cclogo from '../../assets/images/credit-card.png'
+import axios from 'axios'
+import PatientsList from "./PatientsList";
 function HomePage() {
-    const handleDeleteCard = (index) => {
-        const newCards = cards.filter((card, cardIndex) => cardIndex !== index);
-        setCards(newCards);
-    };
-    const [cards, setCards] = useState([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedImage, setSelectedImage] = useState(null);
-    const handleImageUpload = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            // Tạo URL tạm thời từ ảnh người dùng chọn
-            const imageUrl = URL.createObjectURL(file);
-            setSelectedImage(imageUrl);
-        }
-    };
-
-    // Hàm thêm thẻ
-    const addCard = () => {
-        if (selectedImage) {
-            if (cards.length < 10) { // Giới hạn tối đa 10 thẻ
-                setCards([...cards, selectedImage]);
-                setIsModalOpen(false);
-                setSelectedImage(null);
-            } else {
-                alert("Đã đạt giới hạn số thẻ.");
-            }
-        } else {
-            alert("Vui lòng chọn một ảnh!");
-        }
-    };
-
-    const openModal = () => {
-        setIsModalOpen(true);
-    };
-
-    // Hàm đóng modal
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
-
+    const [doctors, setDoctors] = useState([]);  // State lưu danh sách bác sĩ
+    const [loading, setLoading] = useState(true);
     const [inputValue, setInputValue] = useState("");
     const [activeMenu, setActiveMenu] = useState('#dashboard'); // Trạng thái cho menu đang chọn
-
+    useEffect(() => {
+        // Đổi URL API này thành URL thực tế của bạn
+        axios.get('https://your-backend-api.com/doctors')
+            .then(response => {
+                setDoctors(response.data);  // Lưu dữ liệu vào state
+                setLoading(false);  // Cập nhật trạng thái tải xong
+            })
+            .catch(error => {
+                console.error("Error fetching doctors:", error);
+                setLoading(false);  // Dừng trạng thái tải xong dù có lỗi
+            });
+    }, []);
     const handleMenuClick = (id) => {
         setActiveMenu(id); // Cập nhật trạng thái menu đang chọn
     };
-
     const handleSearchClick = () => {
         alert(`Searching for: ${inputValue}`);
         // Thực hiện bất kỳ chức năng tìm kiếm nào
     };
-
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
     };
-
     const [sortOption, setSortOption] = useState('monthly');
-
     const handleSortChange = (value) => {
         setSortOption(value);
-        // Thực hiện hành động thay đổi dữ liệu biểu đồ theo `value` nếu cần
     };
-
+    if (loading) {
+        return <div>Loading...</div>;
+    }
     return (
         <>
             <div className="container-homepagemain">
@@ -141,14 +111,6 @@ function HomePage() {
                                 <img className="icon" src={stlogo} alt="stlogo"></img> Setting
                             </a>
                         </li>
-                        <li
-                            className={`menu-item ${activeMenu === '#payment' ? 'active' : ''}`}
-                            onClick={() => handleMenuClick('#payment')}
-                        >
-                            <a href="#payment">
-                                <img className="icon" src={cclogo} alt="cclogo"></img> Payment
-                            </a>
-                        </li>
                     </ul>
                     <div className="profile-container">
                         <div className="divider3"></div>
@@ -163,8 +125,6 @@ function HomePage() {
                         <Link to="/AuthPage" className="logout-container">Log out</Link>
                     </div>
                 </div>
-
-                {/* Conditionally render main-container and sidebar-right */}
                 {activeMenu === '#dashboard' && (
                     <>
                         <div className="main-containt">
@@ -214,7 +174,6 @@ function HomePage() {
                                 <PatientTable />
                             </div>
                         </div>
-
                         <div className="sidebar-right">
                             <img src={logo} alt="logo" className="img-sidebar-right" />
                             <h2 htmlFor="Username">Dr.dilip Anmangandla, MD</h2>
@@ -267,97 +226,37 @@ function HomePage() {
                         </div>
                     </>
                 )}
-                {activeMenu === '#payment' && (
-                    <>
-                        <div className="appointment-maincontainer">
-                            <div className="appointment-header">
-                                <p className="appointment-header-text">Bank available</p>
-                                <input type="text" value={inputValue} className="Search" onChange={handleInputChange} placeholder="Search" />
-                                <img className="searchlogo" src={searchlogo} alt="searchlogo" onClick={handleSearchClick} />
-                            </div>
-                            <div className="payment-container">
-                                <CardList cards={cards} onDelete={handleDeleteCard} />
-                            </div>
-
-                            <div className="payment-function">
-                                <div>
-                                    <button className="Button-payment" onClick={openModal}>Add payment method</button>
-                                </div>
-                            </div>
-                            {/* Modal chọn ảnh */}
-                            {isModalOpen && (
-                                <div className="payment-modal">
-                                    <div className="payment-modal-content">
-                                        <span className="payment-close-button" onClick={closeModal}>&times;</span>
-                                        <h3>Chọn hình ảnh thẻ ngân hàng</h3>
-                                        <div className="image-options">
-                                            <input
-                                                type="file"
-                                                accept="image/*"
-                                                onChange={handleImageUpload} // Gọi hàm xử lý ảnh khi chọn ảnh
-                                            />
-
-
-                                        </div>
-                                        {selectedImage && (
-                                            <div className="image-preview">
-                                                <img src={selectedImage} alt="Selected" />
-                                            </div>
-                                        )}
-                                        <button className="Add-button" onClick={addCard} disabled={!selectedImage}>Add payment method</button>
-                                    </div>
-
-                                </div>
-                            )}
-
-                        </div>
-                    </>
-                )}
                 {activeMenu === '#doctor' && (
                     <>
                         <div className="appointment-maincontainer">
                             <div className="appointment-header">
-                                <p className="appointment-header-text">List doctor</p>
-                                <input type="text" value={inputValue} className="Search" onChange={handleInputChange} placeholder="Search" />
-                                <img className="searchlogo" src={searchlogo} alt="searchlogo" onClick={handleSearchClick} />
+                                <p className="appointment-header-text">List of Doctors</p>
                             </div>
                             <div className="listdoctor-container">
-                                <div className="doctor-container">
-                                    <div className="head-doctor-container" >
-                                        <img className="doctor-img" src={logo} alt="logo"></img>
-                                        <p>4.5</p>
-                                        <img className="star" src={star} alt='star'></img>
-                                    </div>
-                                    <h1>Ronald Spector</h1>
-                                    <div className="main-doctor-container">
-                                        <div className="doctor-info1">
-                                            <h1>Anthesiih</h1>
-                                            <h2>MBBS,FCCB</h2>
+                                {doctors.length === 0 ? (
+                                    <p>No doctors available.</p>
+                                ) : (
+                                    doctors.map((doctor) => (
+                                        <div className="doctor-container" key={doctor.id}>
+                                            <div className="head-doctor-container">
+                                                <img className="doctor-img" src={doctor.profile_picture || logo} alt="Doctor" />
+                                                <p>{doctor.rating}</p>
+                                                <img className="star" src={star} alt="star" />
+                                            </div>
+                                            <h1>{doctor.name}</h1>
+                                            <div className="main-doctor-container">
+                                                <div className="doctor-info1">
+                                                    <h1>{doctor.specialization}</h1>
+                                                    <h2>{doctor.qualification}</h2>
+                                                </div>
+                                                <div className="doctor-info2">
+                                                    <h1>Availability</h1>
+                                                    <h2>{doctor.availability}</h2>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="doctor-info2">
-                                            <h1>Sun-Fri</h1>
-                                            <h2>10:00Am to 1:00PM</h2>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="doctor-container">
-                                    <div className="head-doctor-container" >
-                                        <img className="doctor-img" src={logo} alt="logo"></img>
-                                        <p>4.5</p>
-                                        <img className="star" src={star} alt='star'></img>
-                                    </div>
-                                    <h1>Ronald Spector</h1>
-                                    <div className="main-doctor-container">
-                                        <div className="doctor-info1">
-                                            <h1>Anthesiih</h1>
-                                            <h2>MBBS,FCCB</h2>
-                                        </div>
-                                        <div className="doctor-info2">
-                                            <h1>Sun-Fri</h1>
-                                            <h2>10:00Am to 1:00PM</h2>
-                                        </div>
-                                    </div>
-                                </div>
+                                    ))
+                                )}
                             </div>
                         </div>
                     </>
@@ -370,6 +269,7 @@ function HomePage() {
                                 <input type="text" value={inputValue} className="Search" onChange={handleInputChange} placeholder="Search" />
                                 <img className="searchlogo" src={searchlogo} alt="searchlogo" onClick={handleSearchClick} />
                             </div>
+                            <PatientsList />
                         </div>
                     </>
                 )}
